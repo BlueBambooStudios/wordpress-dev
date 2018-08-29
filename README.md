@@ -26,6 +26,9 @@ version: '2'
 services:
     wordpress:
         image: bluebamboostudios/wordpress-dev
+        volumes:
+            - ./src/plugins:/usr/src/wordpress/web/app/plugins
+            - ./src/themes:/usr/src/wordpress/web/app/themes
         ports:
             - 8080:80
         depends_on:
