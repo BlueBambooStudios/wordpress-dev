@@ -1,0 +1,23 @@
+version: '2'
+services:
+  wordpress:
+    image: wordpress-dev
+    build: .
+    ports:
+      - 8080:80
+    depends_on:
+      - db
+    environment:
+      - 'WP_HOME=http://localhost:8080'
+      - 'DB_HOST=db'
+      - 'DB_NAME=wp_dev'
+      - 'DB_USER=wp_dev'
+      - 'DB_PASSWORD=pa55word'
+
+  db:
+    image: mariadb:latest
+    environment:
+      - 'MYSQL_RANDOM_ROOT_PASSWORD=yes'
+      - 'MYSQL_USER=wp_dev'
+      - 'MYSQL_PASSWORD=pa55word'
+      - 'MYSQL_DATABASE=wp_dev'
